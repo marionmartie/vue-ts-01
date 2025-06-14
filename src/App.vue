@@ -3,6 +3,11 @@ import Task from '@/components/Task.vue'
 import AddTask from '@/components/AddTask.vue'
 import { ref } from 'vue'
 
+type TaskData = {
+  id: number,
+  title: string,
+}
+
 const tasks = ref([
   {
     id: 1,
@@ -19,11 +24,19 @@ const tasks = ref([
     priority: 2
   }
 ])
+
+const onAddTask = (form: TaskData) => {
+  alert(`Child says ${form.id} ${form.title}`)
+}
+
+const updateTask = (update: number) => {
+  alert(`Child updates task id: ${update}`)
+}
 </script>
 
 <template>
 
-  <AddTask />
+  <AddTask @new-task="onAddTask"  />
 
   <div v-for="task in tasks" class="max-w-3xl mx-auto py-2">
     <Task :task="task" />
