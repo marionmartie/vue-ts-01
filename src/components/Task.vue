@@ -3,9 +3,9 @@ defineProps <{
   task: {
     id: Number,
     title: String,
-    description: String,
-    completed: Boolean,
-    priority: Number,
+    description?: String,
+    completed?: Boolean,
+    priority?: Number
   }
 }>()
 </script>
