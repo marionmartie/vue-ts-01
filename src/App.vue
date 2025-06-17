@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import Task from '@/components/Task.vue'
 import AddTask from '@/components/AddTask.vue'
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 
 type TaskData = {
-  id: Number,
+  id: Number | String,
   title: String,
   description?: String,
   completed?: Boolean,
   priority?: Number
 }
 
-const tasks = ref<TaskData[]>([
+const tasks: Ref<TaskData[]> = ref<TaskData[]>([
   {
     id: 1,
     title: 'Do laundry',
@@ -31,6 +31,15 @@ const tasks = ref<TaskData[]>([
 const onAddTask = (form: TaskData) => {
   tasks.value.push(form)
   console.log(form);
+}
+
+const onChangeTask = (id: String | Number) => {
+  const obj: TaskData | undefined = tasks.value.find( (el) => el.id === id )
+  console.log(obj?.completed);
+  
+  if ( obj?.completed != undefined ) {
+    obj.completed = !obj.completed
+  }
   
 }
 </script>
@@ -40,7 +49,7 @@ const onAddTask = (form: TaskData) => {
   <AddTask @new-task="onAddTask"  />
 
   <div v-for="task in tasks as TaskData[]" key="task.id" class="max-w-3xl mx-auto py-2">
-    <Task :task="task" />
+    <Task :task="task" @change-task="onChangeTask" />
   </div>
   
 </template>

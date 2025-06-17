@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.8",
+    "nanoid": "^5.1.5",
     "primeicons": "^7.0.0",
     "tailwindcss": "^4.1.8",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "vue-unique-id": "^3.2.1"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
