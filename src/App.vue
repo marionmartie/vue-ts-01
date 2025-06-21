@@ -1,47 +1,51 @@
 <script setup lang="ts">
 import Task from '@/components/Task.vue'
 import AddTask from '@/components/AddTask.vue'
-import { ref, type Ref } from 'vue'
+import { ref, type Ref, onMounted } from 'vue'
+import axios from 'axios'
 
 type TaskData = {
   id: Number | String,
   title: String,
   description?: String,
-  completed?: Boolean,
+  completed: Boolean,
   priority?: Number
 }
 
-const tasks: Ref<TaskData[]> = ref<TaskData[]>([
-  {
-    id: 1,
-    title: 'Do laundry',
-    description: 'Lorem ipsum dolor',
-    completed: false,
-    priority: 1
-  },
-  {
-    id: 2,
-    title: 'Buy groceries',
-    description: 'Lorem ipsum dolor sit amet',
-    completed: false,
-    priority: 2
-  }
-])
+const tasks = ref<TaskData[]>([])
 
-const onAddTask = (form: TaskData) => {
+const onAddTask = async (form: TaskData) => {
   tasks.value.push(form)
+
+  try {
+    const res = await axios.post('http://localhost:3000/tasks', form)
+  } catch (err) {
+    console.log(err)
+  } finally {
+
+  }
+
   console.log(form);
 }
 
 const onChangeTask = (id: String | Number) => {
   const obj: TaskData | undefined = tasks.value.find( (el) => el.id === id )
-  console.log(obj?.completed);
-  
-  if ( obj?.completed != undefined ) {
-    obj.completed = !obj.completed
-  }
-  
 }
+
+onMounted(async () => {
+  try {
+    const res = await fetch('http://localhost:3000/tasks')
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`)
+    }
+    const data: TaskData[] = await res.json()
+    tasks.value = data
+  } catch (err) {
+    console.log(err)
+  } finally {
+
+  }
+})
 </script>
 
 <template>

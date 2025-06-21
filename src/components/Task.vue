@@ -4,7 +4,7 @@ defineProps <{
     id: Number | String,
     title: String,
     description?: String,
-    completed?: Boolean,
+    completed: Boolean,
     priority?: Number
   }
 }>()

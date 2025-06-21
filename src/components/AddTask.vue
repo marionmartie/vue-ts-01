@@ -6,7 +6,7 @@ type TaskData = {
   id: String,
   title: String,
   description?: String,
-  completed?: Boolean,
+  completed: Boolean,
   priority?: Number
 }
 
