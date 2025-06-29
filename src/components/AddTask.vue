@@ -47,13 +47,13 @@ const formData = reactive<TaskData>({
         class="w-full mt-2 p-1 rounded border-1 border-gray-400 shadow-xl bg-white" placeholder="Task description">
 
       <div class="flex gap-4 my-4 items-center">
-        <PriorityButton bgColor="bg-yellow-300" priorityName="Low" />
-        <PriorityButton bgColor="bg-orange-300" priorityName="Medium" />
-        <PriorityButton bgColor="bg-red-400" priorityName="High" />
+        <PriorityButton v-model="formData.priority" bgColor="bg-yellow-300" priorityName="Low" />
+        <PriorityButton v-model="formData.priority" bgColor="bg-orange-300" priorityName="Medium" />
+        <PriorityButton v-model="formData.priority" bgColor="bg-red-400" priorityName="High" />
       </div>
 
 
-      <button class="rounded bg-green-400 p-2 shadow-xl mt-4">
+      <button class="btn btn-success btn-sm">
         <i class="pi pi-plus"></i>
         Add Task
       </button>
