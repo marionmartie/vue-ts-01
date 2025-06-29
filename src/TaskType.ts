@@ -5,3 +5,8 @@ export type TaskData = {
     completed: Boolean,
     priority?: Number
 }
+
+export type Priority = {
+    priority: 1 | 2 | 3,
+    priorityName: "Low" | "Medium" | "High",
+}

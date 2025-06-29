@@ -13,36 +13,6 @@
       "description": "Lorem ipsum dolor sit amet",
       "completed": false,
       "priority": 2
-    },
-    {
-      "id": "s3B-5S_Usmu3QfA-OWBaP",
-      "title": "Test Title 1",
-      "description": "Test Description 1",
-      "completed": false
-    },
-    {
-      "id": "ORQscTkAdx4V6h4uhy_Xo",
-      "title": "1",
-      "description": "",
-      "completed": false
-    },
-    {
-      "id": "w9UR4Zgkev_bi9aIEzKcX",
-      "title": "2",
-      "description": "",
-      "completed": false
-    },
-    {
-      "id": "ur_4CViAYpmWtINeJplpk",
-      "title": "2",
-      "description": "",
-      "completed": false
-    },
-    {
-      "id": "ur_4CViAYpmWtINeJplpk",
-      "title": "3",
-      "description": "",
-      "completed": false
     }
   ]
 }

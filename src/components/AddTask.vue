@@ -2,6 +2,7 @@
 import { reactive, ref } from 'vue';
 import { nanoid } from 'nanoid';
 import { type TaskData } from '@/TaskType';
+import PriorityButton from './PriorityButton.vue';
 
 const emit = defineEmits<{
   'new-task': [form: TaskData]
@@ -44,6 +45,13 @@ const formData = reactive<TaskData>({
       <input v-model="formData.description" 
         type="text"
         class="w-full mt-2 p-1 rounded border-1 border-gray-400 shadow-xl bg-white" placeholder="Task description">
+
+      <div class="flex gap-4 my-4 items-center">
+        <PriorityButton bgColor="bg-yellow-300" priorityName="Low" />
+        <PriorityButton bgColor="bg-orange-300" priorityName="Medium" />
+        <PriorityButton bgColor="bg-red-400" priorityName="High" />
+      </div>
+
 
       <button class="rounded bg-green-400 p-2 shadow-xl mt-4">
         <i class="pi pi-plus"></i>
