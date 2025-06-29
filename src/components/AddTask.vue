@@ -1,14 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { nanoid } from 'nanoid';
-
-type TaskData = {
-  id: String,
-  title: String,
-  description?: String,
-  completed: Boolean,
-  priority?: Number
-}
+import { type TaskData } from '@/TaskType';
 
 const emit = defineEmits<{
   'new-task': [form: TaskData]

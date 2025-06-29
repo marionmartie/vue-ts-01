@@ -3,25 +3,24 @@ import Task from '@/components/Task.vue'
 import AddTask from '@/components/AddTask.vue'
 import { ref, type Ref, onMounted } from 'vue'
 import axios from 'axios'
-
-type TaskData = {
-  id: Number | String,
-  title: String,
-  description?: String,
-  completed: Boolean,
-  priority?: Number
-}
+import { type TaskData } from './TaskType'
 
 const tasks = ref<TaskData[]>([])
 
-const onAddTask = async (form: TaskData) => {
-  tasks.value.push(form)
+const isLoading = ref<Boolean>(false)
 
-  try {
-    const res = await axios.post('http://localhost:3000/tasks', form)
+const onAddTask = async (form: TaskData) => {
+  
+  try {    
+
+    isLoading.value = true
+    const res = await axios.post('http://localhost:5001/tasks', form)
+    tasks.value.push(res.data)
+
   } catch (err) {
     console.log(err)
   } finally {
+    isLoading.value = false
 
   }
 
@@ -34,7 +33,8 @@ const onChangeTask = (id: String | Number) => {
 
 onMounted(async () => {
   try {
-    const res = await fetch('http://localhost:3000/tasks')
+    isLoading.value = true
+    const res = await fetch('http://localhost:5001/tasks')
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`)
     }
@@ -43,7 +43,7 @@ onMounted(async () => {
   } catch (err) {
     console.log(err)
   } finally {
-
+    isLoading.value = false
   }
 })
 </script>
@@ -53,7 +53,7 @@ onMounted(async () => {
   <AddTask @new-task="onAddTask"  />
 
   <div v-for="task in tasks as TaskData[]" key="task.id" class="max-w-3xl mx-auto py-2">
-    <Task :task="task" @change-task="onChangeTask" />
+    <Task v-if="!isLoading" :task="task" @change-task="onChangeTask" />
   </div>
   
 </template>

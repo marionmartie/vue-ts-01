@@ -1,12 +1,8 @@
 <script setup lang="ts">
+import { type TaskData } from '@/TaskType';
+
 defineProps <{
-  task: {
-    id: Number | String,
-    title: String,
-    description?: String,
-    completed: Boolean,
-    priority?: Number
-  }
+  task: TaskData
 }>()
 
 const emit = defineEmits <{
