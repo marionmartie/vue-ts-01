@@ -35,28 +35,32 @@ const formData = reactive<TaskData>({
 <template>
   <form @submit.prevent="addTask()">
     <div class="max-w-3xl mx-auto mt-4 mb-2 p-4">
-      <input placeholder="Enter a task title" 
-        v-model="formData.title" 
-        type="text"
-        class="w-full p-1 rounded border-1 border-gray-400 shadow-xl bg-white"
-        :class="{ 'border-red-400': showTitleError }">
-      <span v-if="showTitleError" class="block text-red-600 text-sm">Please enter title</span>
 
-      <input v-model="formData.description" 
-        type="text"
-        class="w-full mt-2 p-1 rounded border-1 border-gray-400 shadow-xl bg-white" placeholder="Task description">
+      <div class="border-1 border-gray-300 bg-white p-2 rounded">
+        <input type="text" name="" id="" placeholder="Task title"
+          class="w-full p-1 border-b-1 border-b-gray-300 focus:outline-none font-bold" v-model="formData.title">
 
-      <div class="flex gap-4 my-4 items-center">
-        <PriorityButton v-model="formData.priority" bgColor="bg-yellow-300" priorityName="Low" />
-        <PriorityButton v-model="formData.priority" bgColor="bg-orange-300" priorityName="Medium" />
-        <PriorityButton v-model="formData.priority" bgColor="bg-red-400" priorityName="High" />
+        <input type="text" name="" id="" placeholder="Task description" class="w-full p-1 focus:outline-none"
+          v-model="formData.description">
+
+        <div class="my-4 text-sm">
+          <p class="text-gray-500 mb-2">Priority:</p>
+          <div class="flex gap-4 items-center">
+            <PriorityButton v-model="formData.priority" bgColor="has-checked:bg-yellow-300" priorityName="Low" />
+            <PriorityButton v-model="formData.priority" bgColor="has-checked:bg-orange-300" priorityName="Medium" />
+            <PriorityButton v-model="formData.priority" bgColor="has-checked:bg-red-400" priorityName="High" />
+          </div>
+        </div>
+
+        <div class="border-gray-300 border-t-1 pt-4">
+          <button class="btn btn-success btn-sm">
+            <i class="pi pi-plus"></i>
+            Add Task
+          </button>
+        </div>
       </div>
 
-
-      <button class="btn btn-success btn-sm">
-        <i class="pi pi-plus"></i>
-        Add Task
-      </button>
+      <span v-if="showTitleError" class="block text-red-600 text-sm">Please enter title</span>
     </div>
   </form>
 </template>
